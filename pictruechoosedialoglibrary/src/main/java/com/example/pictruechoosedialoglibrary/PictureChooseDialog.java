@@ -3,6 +3,7 @@ package com.example.pictruechoosedialoglibrary;
 import android.Manifest;
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -20,6 +21,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 
+import com.example.pictruechoosedialoglibrary.activity.CameraActivity;
+import com.example.pictruechoosedialoglibrary.callback.CustomerClickListener;
 import com.yanzhenjie.album.Action;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumConfig;
@@ -27,6 +30,7 @@ import com.yanzhenjie.album.AlbumFile;
 import com.yanzhenjie.album.api.widget.Widget;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class PictureChooseDialog {
@@ -99,6 +103,16 @@ public class PictureChooseDialog {
                 }
             });
 
+            tvCamera.setOnClickListener(new CustomerClickListener() {
+                @Override
+                public void onOneClick(View v) {
+                    Intent intent = new Intent(activity, CameraActivity.class);
+                    intent.putExtra("OnPictureChooseCallBack", callBack);
+                    activity.startActivity(intent);
+                }
+            });
+
+
 
             tvCancel.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -164,7 +178,7 @@ public class PictureChooseDialog {
         dialog.dismiss();
     }
 
-    public interface OnPictureChooseCallBack{
+    public interface OnPictureChooseCallBack extends Serializable {
         void result(Bitmap result);
         void resultDrawable(Drawable drawable);
         void dismiss();
