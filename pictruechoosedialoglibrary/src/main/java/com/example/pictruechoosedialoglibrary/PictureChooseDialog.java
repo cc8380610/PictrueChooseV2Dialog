@@ -124,16 +124,16 @@ public class PictureChooseDialog {
 
             dialog.setContentView(view);
 
-            //設定點擊對話框外及返回鍵不會消失
+
+            dialog.setContentView(view);
             dialog.setCancelable(false);
-            //設置對話框大小
-            Window dialogWindow = dialog.getWindow();
-            WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-            dialogWindow.setDimAmount(0f);
-            lp.width = (int) (ScreenSizeUtils.getInstance(activity).getScreenWidth());
-            lp.height = (int) (ScreenSizeUtils.getInstance(activity).getScreenHeight() * 0.345f);
-            lp.gravity = Gravity.BOTTOM;
-            dialogWindow.setAttributes(lp);
+            dialog.setCanceledOnTouchOutside(false);
+            Window window = dialog.getWindow();
+            window.setGravity(Gravity.BOTTOM);
+            WindowManager.LayoutParams params = window.getAttributes();
+            params.width = WindowManager.LayoutParams.MATCH_PARENT;
+            params.height = WindowManager.LayoutParams.WRAP_CONTENT;
+            window.setAttributes(params);
 
         }
 
