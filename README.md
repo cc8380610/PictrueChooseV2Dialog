@@ -1,1 +1,2 @@
-implementation 'com.github.cc8380610:PictrueChooseV2Dialog:Tag'
+[![](https://jitpack.io/v/cc8380610/PictrueChooseV2Dialog.svg)](https://jitpack.io/#cc8380610/PictrueChooseV2Dialog)
+
