@@ -5,42 +5,45 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Parcel;
+import android.util.Log;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity {
+import com.example.pictruechoosedialoglibrary.callback.OnPictureChooseCallBack;
 
-    private PictureChooseDialog pictureChooseDialog;
+public class MainActivity extends AppCompatActivity implements OnPictureChooseCallBack {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        PictureChooseDialog  pictureChooseDialog = new PictureChooseDialog(this,this);
         findViewById(R.id.btn).setOnClickListener(view -> {
             pictureChooseDialog.show();
         });
 
-        pictureChooseDialog = new PictureChooseDialog(this, new PictureChooseDialog.OnPictureChooseCallBack() {
-            @Override
-            public void result(Bitmap result) {
 
-            }
-
-            @Override
-            public void resultDrawable(Drawable drawable) {
-                findViewById(R.id.iv).setBackground(drawable);
-            }
-
-            @Override
-            public void dismiss() {
-
-            }
-
-            @Override
-            public void exception(Exception e) {
-
-            }
-        });
     }
 
+    @Override
+    public void result(Bitmap result) {
+        Log.d("TTTTTTT","result: "+result);
+    }
+
+    @Override
+    public void resultDrawable(Drawable drawable) {
+        findViewById(R.id.iv).setBackground(drawable);
+    }
+
+    @Override
+    public void dismiss() {
+
+    }
+
+    @Override
+    public void exception(Exception e) {
+
+    }
 }
