@@ -21,7 +21,7 @@
         <!-- 是否有覆盖 -->
         <item name="android:windowContentOverlay">@null</item>
         <!--进出的显示动画 -->
-        <item name="android:windowAnimationStyle">@style/normalDialogAnim</item>
+        <item name="android:windowAnimationStyle">@style/dialogAnim</item>
         <!--背景变暗-->
         <item name="android:backgroundDimEnabled">true</item>
     </style>
@@ -29,5 +29,11 @@
     <style name="normalDialogAnim" parent="android:Animation">
         <item name="android:windowEnterAnimation">@anim/dialog_pop_in</item>
         <item name="android:windowExitAnimation">@anim/dialog_pop_out</item>
+    </style>
+
+    <!--对话框动画-->
+    <style name="dialogAnim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/actionsheet_dialog_in</item>
+        <item name="android:windowExitAnimation">@anim/actionsheet_dialog_out</item>
     </style>
 </resources>
