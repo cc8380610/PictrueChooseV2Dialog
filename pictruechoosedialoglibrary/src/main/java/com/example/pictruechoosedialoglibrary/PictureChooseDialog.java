@@ -89,11 +89,14 @@ public class PictureChooseDialog {
                                         Log.d(TAG, "IOException" + e.getMessage());
                                         callBack.exception(e);
                                     }
+                                    dialog.dismiss();
                                 }
                             })
                             .onCancel(new Action<String>() {
                                 @Override
                                 public void onAction(@NonNull String result) {
+                                    callBack.errorMsg(result);
+                                    dialog.dismiss();
                                 }
                             })
                             .start();
@@ -123,9 +126,13 @@ public class PictureChooseDialog {
             });
 
             dialog.setContentView(view);
-            dialog.setCancelable(false);
-            dialog.setCanceledOnTouchOutside(false);
+            dialog.setCancelable(true);
+            dialog.setCanceledOnTouchOutside(true);
+
             Window window = dialog.getWindow();
+            if(window == null){
+                return;
+            }
             window.setGravity(Gravity.BOTTOM);
             WindowManager.LayoutParams params = window.getAttributes();
             params.width = WindowManager.LayoutParams.MATCH_PARENT;

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.pictruechoosedialoglibrary.callback.OnPictureChooseCallBack;
 
@@ -23,8 +24,6 @@ public class MainActivity extends AppCompatActivity implements OnPictureChooseCa
         findViewById(R.id.btn).setOnClickListener(view -> {
             pictureChooseDialog.show();
         });
-
-
     }
 
     @Override
@@ -37,13 +36,18 @@ public class MainActivity extends AppCompatActivity implements OnPictureChooseCa
         findViewById(R.id.iv).setBackground(drawable);
     }
 
+
     @Override
     public void dismiss() {
 
     }
 
     @Override
-    public void exception(Exception e) {
+    public void errorMsg(String msg) {
+        Toast.makeText(MainActivity.this, msg, Toast.LENGTH_SHORT).show();
+    }
 
+    @Override
+    public void exception(Exception e) {
     }
 }

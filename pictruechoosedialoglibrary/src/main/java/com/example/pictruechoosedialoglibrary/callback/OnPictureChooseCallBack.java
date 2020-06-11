@@ -9,5 +9,6 @@ public interface OnPictureChooseCallBack extends Serializable {
     void result(Bitmap result);
     void resultDrawable(Drawable drawable);
     void dismiss();
+    void errorMsg(String msg);
     void exception(Exception e);
 }
