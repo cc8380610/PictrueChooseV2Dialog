@@ -23,6 +23,7 @@ import androidx.constraintlayout.widget.ConstraintSet;
 import com.example.pictruechoosedialoglibrary.PictureChooseDialog;
 import com.example.pictruechoosedialoglibrary.R;
 import com.example.pictruechoosedialoglibrary.callback.CustomerClickListener;
+import com.example.pictruechoosedialoglibrary.callback.OnPictureChooseCallBack;
 import com.example.pictruechoosedialoglibrary.fragment.PicturePreviewFragment;
 import com.otaliastudios.cameraview.CameraException;
 import com.otaliastudios.cameraview.CameraListener;
@@ -45,7 +46,7 @@ public class CameraActivity extends AppCompatActivity {
     private View view;
     private boolean isScanOrder;
     private PicturePreviewFragment fragment;
-    private PictureChooseDialog.OnPictureChooseCallBack callBack;
+    private OnPictureChooseCallBack callBack;
     private ConstraintSet constraintSet;
     private ConstraintLayout main;
     private boolean isOpen = false;
@@ -80,7 +81,7 @@ public class CameraActivity extends AppCompatActivity {
 
     private void getIntentData() {
         Intent intent = getIntent();
-        callBack = (PictureChooseDialog.OnPictureChooseCallBack) intent.getSerializableExtra("OnPictureChooseCallBack");
+        callBack = (OnPictureChooseCallBack) intent.getSerializableExtra("OnPictureChooseCallBack");
     }
 
     private void cameraListener() {

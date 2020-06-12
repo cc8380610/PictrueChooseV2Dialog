@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
@@ -23,14 +24,13 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.pictruechoosedialoglibrary.activity.CameraActivity;
 import com.example.pictruechoosedialoglibrary.callback.CustomerClickListener;
+import com.example.pictruechoosedialoglibrary.callback.OnPictureChooseCallBack;
 import com.yanzhenjie.album.Action;
 import com.yanzhenjie.album.Album;
 import com.yanzhenjie.album.AlbumConfig;
 import com.yanzhenjie.album.AlbumFile;
 import com.yanzhenjie.album.api.widget.Widget;
-
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
 
 public class PictureChooseDialog {
@@ -89,9 +89,7 @@ public class PictureChooseDialog {
                                         Log.d(TAG, "IOException" + e.getMessage());
                                         callBack.exception(e);
                                     }
-
                                     dialog.dismiss();
-
                                 }
                             })
                             .onCancel(new Action<String>() {
@@ -109,8 +107,11 @@ public class PictureChooseDialog {
                 @Override
                 public void onOneClick(View v) {
                     Intent intent = new Intent(activity, CameraActivity.class);
-                    intent.putExtra("OnPictureChooseCallBack", callBack);
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("OnPictureChooseCallBack", callBack);
+                    intent.putExtras(bundle);
                     activity.startActivity(intent);
+                    dialog.dismiss();
                 }
             });
 
@@ -125,11 +126,9 @@ public class PictureChooseDialog {
             });
 
             dialog.setContentView(view);
-
-
-            dialog.setContentView(view);
             dialog.setCancelable(true);
             dialog.setCanceledOnTouchOutside(true);
+
             Window window = dialog.getWindow();
             if(window == null){
                 return;
@@ -181,13 +180,5 @@ public class PictureChooseDialog {
             return;
         }
         dialog.dismiss();
-    }
-
-    public interface OnPictureChooseCallBack extends Serializable {
-        void result(Bitmap result);
-        void resultDrawable(Drawable drawable);
-        void dismiss();
-        void errorMsg(String msg);
-        void exception(Exception e);
     }
 }
