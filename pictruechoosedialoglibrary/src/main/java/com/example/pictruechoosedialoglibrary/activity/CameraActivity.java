@@ -2,7 +2,6 @@ package com.example.pictruechoosedialoglibrary.activity;
 
 import android.animation.ObjectAnimator;
 import android.app.Activity;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.PointF;
@@ -23,7 +22,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
-import com.example.pictruechoosedialoglibrary.PictureChooseDialog;
 import com.example.pictruechoosedialoglibrary.R;
 import com.example.pictruechoosedialoglibrary.callback.CustomerClickListener;
 import com.example.pictruechoosedialoglibrary.callback.OnPictureChooseCallBack;
@@ -67,7 +65,6 @@ public class CameraActivity extends AppCompatActivity {
         final int width = metric.widthPixels;
         initView();
         initListener(width);
-        getIntentData();
         cameraListener();
     }
 
@@ -84,10 +81,6 @@ public class CameraActivity extends AppCompatActivity {
         tvCameraViewSize = findViewById(R.id.tvCameraViewSize);
     }
 
-    private void getIntentData() {
-//        Intent intent = getIntent();
-//        callBack = (OnPictureChooseCallBack) intent.getSerializableExtra("OnPictureChooseCallBack");
-    }
 
     private void cameraListener() {
         camera.addCameraListener(new CameraListener() {
