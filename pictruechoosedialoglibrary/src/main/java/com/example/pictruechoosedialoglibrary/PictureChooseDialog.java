@@ -110,12 +110,12 @@ public class PictureChooseDialog {
 
     public void show() {
 
-        if(ActivityCompat.checkSelfPermission(activity,Manifest.permission.CAMERA)
-                != PackageManager.PERMISSION_GRANTED){
-            int INTENT_CAMERA_ID_FRONT_REQUEST_CODE = 666;
-            ActivityCompat.requestPermissions(activity, PERMISSION_REQUEST, INTENT_CAMERA_ID_FRONT_REQUEST_CODE);
-            return;
-        }
+//        if(ActivityCompat.checkSelfPermission(activity,Manifest.permission.CAMERA)
+//                != PackageManager.PERMISSION_GRANTED){
+//            int INTENT_CAMERA_ID_FRONT_REQUEST_CODE = 666;
+//            ActivityCompat.requestPermissions(activity, PERMISSION_REQUEST, INTENT_CAMERA_ID_FRONT_REQUEST_CODE);
+//            return;
+//        }
 
         if (!activity.isFinishing() && !isShowing()){
             View view = View.inflate(activity, R.layout.dialog_picture_choose, null);
@@ -143,7 +143,8 @@ public class PictureChooseDialog {
                             .onResult(new OnPictureChooseCallBack() {
                                 @Override
                                 public void result(Bitmap result) {
-
+                                    callBack.result(result);
+                                    dialog.dismiss();
                                 }
 
                                 @Override

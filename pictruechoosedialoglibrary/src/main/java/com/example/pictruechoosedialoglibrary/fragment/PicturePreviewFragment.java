@@ -54,6 +54,7 @@ public class PicturePreviewFragment extends Fragment {
                         imageView.setImageBitmap(bitmap);
                     }
                 });
+
             } catch (UnsupportedOperationException e) {
                 imageView.setImageDrawable(new ColorDrawable(Color.BLACK));
                 Toast.makeText(getActivity(), "Can't preview this format: " + picture.getFormat(),

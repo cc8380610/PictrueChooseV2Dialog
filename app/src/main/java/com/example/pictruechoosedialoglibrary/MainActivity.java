@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         pictureChooseDialog = new PictureChooseDialog(this, new OnPictureChooseCallBack() {
             @Override
             public void result(Bitmap result) {
-
+                Log.d("MainActivity","result: "+result);
             }
 
             @Override
@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void dismiss() {
-
             }
 
             @Override
