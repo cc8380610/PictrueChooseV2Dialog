@@ -67,11 +67,10 @@ public class PictureChooseDialog {
                 @Override
                 public void onClick(View view) {
                     Album.image(activity)//打開相冊
-                            .multipleChoice()
+                            .singleChoice()
                             .widget(getWidget())
                             .camera(false)
                             .columnCount(3)
-                            .selectCount(1)
                             .onResult(new Action<ArrayList<AlbumFile>>() {
                                 @Override
                                 public void onAction(@NonNull ArrayList<AlbumFile> result) {
@@ -106,12 +105,34 @@ public class PictureChooseDialog {
             tvCamera.setOnClickListener(new CustomerClickListener() {
                 @Override
                 public void onOneClick(View v) {
-                    Intent intent = new Intent(activity, CameraActivity.class);
-                    Bundle bundle = new Bundle();
-                    bundle.putSerializable("OnPictureChooseCallBack", callBack);
-                    intent.putExtras(bundle);
-                    activity.startActivity(intent);
-                    dialog.dismiss();
+                    Camera.init(activity)
+                            .onResult(new OnPictureChooseCallBack() {
+                                @Override
+                                public void result(Bitmap result) {
+
+                                }
+
+                                @Override
+                                public void resultDrawable(Drawable drawable) {
+                                    callBack.resultDrawable(drawable);
+                                    dialog.dismiss();
+                                }
+
+                                @Override
+                                public void dismiss() {
+
+                                }
+
+                                @Override
+                                public void errorMsg(String msg) {
+
+                                }
+
+                                @Override
+                                public void exception(Exception e) {
+
+                                }
+                            }).start();
                 }
             });
 

@@ -14,13 +14,13 @@ import com.example.pictruechoosedialoglibrary.callback.OnPictureChooseCallBack;
 
 public class MainActivity extends AppCompatActivity implements OnPictureChooseCallBack {
 
-
+    private PictureChooseDialog pictureChooseDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        PictureChooseDialog  pictureChooseDialog = new PictureChooseDialog(this,this);
+        pictureChooseDialog = new PictureChooseDialog(this,this);
         findViewById(R.id.btn).setOnClickListener(view -> {
             pictureChooseDialog.show();
         });

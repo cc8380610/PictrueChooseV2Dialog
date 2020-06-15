@@ -1,10 +1,13 @@
 package com.example.pictruechoosedialoglibrary.activity;
 
 import android.animation.ObjectAnimator;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.PointF;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -46,16 +49,18 @@ public class CameraActivity extends AppCompatActivity {
     private View view;
     private boolean isScanOrder;
     private PicturePreviewFragment fragment;
-    private OnPictureChooseCallBack callBack;
+    public static OnPictureChooseCallBack callBack;
     private ConstraintSet constraintSet;
     private ConstraintLayout main;
     private boolean isOpen = false;
     private Bitmap bitmapResult;
+    private Activity activity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.camera_activity);
+        activity = this;
         constraintSet = new ConstraintSet();
         DisplayMetrics metric = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metric);
@@ -80,8 +85,8 @@ public class CameraActivity extends AppCompatActivity {
     }
 
     private void getIntentData() {
-        Intent intent = getIntent();
-        callBack = (OnPictureChooseCallBack) intent.getSerializableExtra("OnPictureChooseCallBack");
+//        Intent intent = getIntent();
+//        callBack = (OnPictureChooseCallBack) intent.getSerializableExtra("OnPictureChooseCallBack");
     }
 
     private void cameraListener() {
@@ -219,8 +224,10 @@ public class CameraActivity extends AppCompatActivity {
         tvUpload.setOnClickListener(new CustomerClickListener() {
             @Override
             public void onOneClick(View v) {
-               callBack.result(bitmapResult);
-               finish();
+                Drawable drawable = new BitmapDrawable(activity.getResources(), bitmapResult);
+                callBack.result(bitmapResult);
+                callBack.resultDrawable(drawable);
+                finish();
             }
         });
 
